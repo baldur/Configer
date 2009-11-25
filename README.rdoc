@@ -4,8 +4,9 @@
 
 == DESCRIPTION:
 
-translates yaml file structure to constance structure in application
+Translates yaml file structure to constance structure in application
 Loads it at application boot time
+Goal is to make configuration simple, secure and flexible
 
 == FEATURES/PROBLEMS:
 
@@ -13,7 +14,11 @@ Loads it at application boot time
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+  Configer.init("MyApp", "path/to/yaml/directory/with/config/files/")
+  if you have hosts.yaml file in that directoory you can now get values by
+  Configer['hosts']['somekey']
+  or
+  MyApp['hosts']['somekey']
 
 == REQUIREMENTS:
 
