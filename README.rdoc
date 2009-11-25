@@ -1,10 +1,11 @@
 = configer
 
-* http://github.com/#{github_username}/#{project_name}
+* http://github.com/baldur/configer
 
 == DESCRIPTION:
 
-FIX (describe your package)
+translates yaml file structure to constance structure in application
+Loads it at application boot time
 
 == FEATURES/PROBLEMS:
 
@@ -20,13 +21,13 @@ FIX (describe your package)
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+sudo gem install configer
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2009 FIXME full name
+Copyright (c) 2009 Baldur Ingi Gudbjornsson
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
