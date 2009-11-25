@@ -1,0 +1,15 @@
+amazon:
+  amazon_access_key_id: access key
+  amazon_secret_access_key: seriously protect that key
+  s3:
+    buckets:
+      - bucket_one
+      - bucket_two
+  sqs:
+    queues:
+      - queue_one
+      - queue_two
+
+other_webservice:
+  api_key: sectet key
+    

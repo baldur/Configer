@@ -1,0 +1,10 @@
+database:
+  type: mysql
+  host: db.localhost
+  port: 3306
+
+search_node:
+  type: solr
+  host: search.localhost
+  port: 8983
+
