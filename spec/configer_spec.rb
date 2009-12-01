@@ -20,6 +20,10 @@ describe "after initialization" do
       MyApp::EXTERNAL_SERVICES['only_in_production']['that_right'].should == "sure is"
     end
 
+    it "should be able to have extra stuff in environments folder" do
+      lambda { MyApp::PRODUCTION_STUFF }.should_not raise_error NameError
+    end
+
   end
 
   describe "with default environment" do
