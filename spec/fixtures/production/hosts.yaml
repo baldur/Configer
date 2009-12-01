@@ -1,0 +1,10 @@
+database:
+  type: mysql_production
+  host: production.db.localhost
+  port: 3306
+
+search_node:
+  type: solr_production
+  host: production.search.localhost
+  port: 8983
+

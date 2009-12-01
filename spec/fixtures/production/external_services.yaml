@@ -1,0 +1,18 @@
+amazon:
+  amazon_access_key_id: production access key
+  amazon_secret_access_key: production seriously protect that key
+  s3:
+    buckets:
+      - bucket_one_production
+      - bucket_two_production
+  sqs:
+    queues:
+      - queue_one_production
+      - queue_two_production
+
+other_webservice:
+  api_key: sectet key production
+
+only_in_production:
+  that_right: sure is
+    

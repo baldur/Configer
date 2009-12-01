@@ -1,51 +1,43 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
 describe "after initialization" do
+
   before do
-    Configer.init('MyApp')
     @hosts = YAML.load_file(File.dirname(__FILE__) + "/../spec/fixtures/hosts.yaml")
     @exernal_services = YAML.load_file(File.dirname(__FILE__) + "/../spec/fixtures/external_services.yaml")
   end
 
-  it "should be able to use custom prefix" do
-    lambda { MyApp }.should_not raise_error NameError
-  end
-  
-  it "should have HOSTS constance" do
-    lambda { Configer::HOSTS }.should_not raise_error NameError
-  end
-
-  it "should have EXTERNAL_SERVICES constance" do
-    lambda { Configer::EXTERNAL_SERVICES }.should_not raise_error NameError
-  end
-
-  describe "hosts.yaml" do
-    it "should match database" do
-      @hosts['database'].each_pair do |key, value|
-      Configer::HOSTS['database'][key].should == value
-      MyApp::HOSTS['database'][key].should == value
-      end
+  describe "with environment" do
+    before do
+      Configer.init(:prefix => 'MyApp', :environment => 'production')
+      @hosts = YAML.load_file(File.dirname(__FILE__) + "/../spec/fixtures/production/hosts.yaml")
+      @exernal_services = YAML.load_file(File.dirname(__FILE__) + "/../spec/fixtures/production/external_services.yaml")
     end
 
-    it "should match search_node" do
-      @hosts['search_node'].each_pair do |key, value|
-      Configer::HOSTS['search_node'][key].should == value
-      MyApp::HOSTS['search_node'][key].should == value
-      end
+    it_should_behave_like "all environments"
+
+    it "should add configs from files in environment folder" do
+      MyApp::EXTERNAL_SERVICES['only_in_production']['that_right'].should == "sure is"
     end
+
   end
 
-  describe "external_services.yaml" do
-    it "should match amazon" do
-      expected = @exernal_services['other_webservice']['api_key']
-      Configer::EXTERNAL_SERVICES['other_webservice']['api_key'].should == expected
-      MyApp::EXTERNAL_SERVICES['other_webservice']['api_key'].should == expected
+  describe "with default environment" do
+    before do
+      Configer.init(:prefix => 'MyApp')
     end
+
+    it_should_behave_like "all environments"
+
+    it "should merge and not trash default settings" do
+      MyApp::EXTERNAL_SERVICES['only_in_default']['that_right'].should == "sure is"
+    end
+
   end
 
   after do
     Configer.destroy_constants
     Object.send(:remove_const, :MyApp)
   end
-  
 end
+

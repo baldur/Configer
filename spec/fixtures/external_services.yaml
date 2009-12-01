@@ -12,4 +12,7 @@ amazon:
 
 other_webservice:
   api_key: sectet key
+
+only_in_default:
+  that_right: sure is
     
